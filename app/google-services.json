@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "435448565426",
+    "firebase_url": "https://albergue-ede81-default-rtdb.firebaseio.com",
+    "project_id": "albergue-ede81",
+    "storage_bucket": "albergue-ede81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435448565426:android:3249143a3b78f4ad6243ab",
+        "android_client_info": {
+          "package_name": "com.example.albergue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435448565426-7inai7odv46f1ofguq419plg997p495a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.albergue",
+            "certificate_hash": "4ab6e533fb7904bc3b146dd3d80cb0d245add803"
+          }
+        },
+        {
+          "client_id": "435448565426-kmkgise1r68h4taah4fokl9ps4vglju2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdVCNrMhZwTvBA-tUAFm-RO91CS4CIYQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435448565426-kmkgise1r68h4taah4fokl9ps4vglju2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
