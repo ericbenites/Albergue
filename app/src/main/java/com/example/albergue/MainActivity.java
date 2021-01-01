@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.albergue.Admin.PrincipalAdminActivity;
+import com.example.albergue.Users.MainUserActivity;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -76,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (usuario.isEmailVerified()) {
+                        if (usuario.getUid().equals("W0pfxu2AwPd51rytX7Lb1jVhXKF2")){
+                            Intent intent1 = new Intent(MainActivity.this, PrincipalAdminActivity.class);
+                            startActivity(intent1);
+                            finish();
+                        }else {
+                            Intent intent2 = new Intent(MainActivity.this, MainUserActivity.class);
+                            startActivity(intent2);
+                            finish();
+                        }
 
                     }else {
                         Toast.makeText(MainActivity.this, "se le ha enviado un correo de verificación",
