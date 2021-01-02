@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Albergue</string>
+    <string-array name="rescatado">
+        <item>Perro</item>
+        <item>Gato</item>
+    </string-array>
+
 </resources>

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Albergue">
-        <activity android:name=".Users.MainUserActivity"></activity>
+        <activity android:name=".RegistroAnimales"></activity>
+        <activity android:name=".Users.MainUserActivity" />
         <activity android:name=".Admin.PrincipalAdminActivity" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".MainActivity">

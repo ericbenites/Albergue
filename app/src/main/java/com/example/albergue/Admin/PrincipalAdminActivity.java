@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.albergue.MainActivity;
 import com.example.albergue.R;
+import com.example.albergue.RegistroAnimales;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -27,6 +29,13 @@ public class PrincipalAdminActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_4main, menu);
         return true;
     }
+
+    public void registrar (View view){
+        Intent intent = new Intent(this, RegistroAnimales.class);
+        startActivity(intent);
+    }
+
+
 
     public void logout(MenuItem item){
         AuthUI instancia = AuthUI.getInstance();
