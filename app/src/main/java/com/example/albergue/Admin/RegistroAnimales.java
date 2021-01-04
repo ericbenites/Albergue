@@ -28,8 +28,14 @@ import com.example.albergue.Dto.MascotasRegistro;
 import com.example.albergue.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -107,16 +113,20 @@ public class RegistroAnimales extends AppCompatActivity {
             case PERMISSION_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     pickImageFromGalley();
+                    break;
                 }
                 else {
-                    Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Permiso denegado para la galeria", Toast.LENGTH_SHORT).show();
+                    break;
                 }
             }
             case CAMERA_PERM_CODE:{
-                if (grantResults.length < 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     dispatchTakePictureIntent();
+                    break;
                 }else {
                     Toast.makeText(RegistroAnimales.this, "Se requiere permisos de cámara", Toast.LENGTH_SHORT).show();
+                    break;
                 }
             }
         }
@@ -205,70 +215,192 @@ public class RegistroAnimales extends AppCompatActivity {
         String fecha1 = fecha.getText().toString();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        if (uri2 != null ){
+            if (!raza1.isEmpty() && !donde.isEmpty() && !fecha1.isEmpty() && !peso1.isEmpty() && !nombre1.isEmpty()){
+                if (spinner.getSelectedItem().toString().equals("Perro")) {
 
-        if (!raza1.isEmpty() && !donde.isEmpty() && !fecha1.isEmpty() && !peso1.isEmpty()){
-            if (spinner.getSelectedItem().toString().equals("Perro")) {
+                    MascotasRegistro mascotasRegistro = new MascotasRegistro();
+                    mascotasRegistro.setNombre(nombre.getText().toString());
+                    mascotasRegistro.setPeso(peso1);
+                    mascotasRegistro.setRaza(raza.getText().toString());
+                    mascotasRegistro.setAdicional(adici.getText().toString());
+                    mascotasRegistro.setFecha(fecha.getText().toString());
 
-                MascotasRegistro mascotasRegistro = new MascotasRegistro();
-                mascotasRegistro.setNombre(nombre.getText().toString());
-                mascotasRegistro.setPeso(peso1);
-                mascotasRegistro.setRaza(raza.getText().toString());
-                mascotasRegistro.setAdicional(adici.getText().toString());
-                mascotasRegistro.setFecha(fecha.getText().toString());
+                    databaseReference.child("Perros").push().setValue(mascotasRegistro)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    databaseReference.child("Perros").orderByKey().limitToLast(1)
+                                            .addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            if (snapshot.getValue() != null){
+                                                String iddd = snapshot.getKey();
+                                                Log.d("infoApp", "id: " + iddd);
+                                                subirArchivoPerro(uri2, iddd);
+                                                Log.d("infoApp", "uri: " + uri2.toString());
+                                            }
+                                        }
 
-                databaseReference.child("Perros").push().setValue(mascotasRegistro)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
-                                startActivity(intent);
-                                finish();
-                                Toast.makeText(RegistroAnimales.this, "Rescatado registrado exitosamente", Toast.LENGTH_LONG).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                e.printStackTrace();
-                                Toast.makeText(RegistroAnimales.this, "No se registró", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-            } else if (spinner.getSelectedItem().toString().equals("Gato")) {
+                                        }
 
-                MascotasRegistro mascotasRegistro = new MascotasRegistro();
-                mascotasRegistro.setNombre(nombre.getText().toString());
-                //mascotasRegistro.setPeso(Double.valueOf(peso.getText().toString()));
-                mascotasRegistro.setRaza(raza.getText().toString());
-                mascotasRegistro.setAdicional(adici.getText().toString());
-                mascotasRegistro.setFecha(fecha.getText().toString());
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-                databaseReference.child("Gatos").push().setValue(mascotasRegistro)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
-                                startActivity(intent);
-                                finish();
-                                Toast.makeText(RegistroAnimales.this, "Rescatado registrado exitosamente", Toast.LENGTH_LONG).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                e.printStackTrace();
-                                Toast.makeText(RegistroAnimales.this, "No se registró", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                    /*Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    Toast.makeText(RegistroAnimales.this, "Rescatado registrado exitosamente", Toast.LENGTH_LONG).show();*/
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(RegistroAnimales.this, "No se registró", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                } else if (spinner.getSelectedItem().toString().equals("Gato")) {
+
+                    MascotasRegistro mascotasRegistro = new MascotasRegistro();
+                    mascotasRegistro.setNombre(nombre.getText().toString());
+                    //mascotasRegistro.setPeso(Double.valueOf(peso.getText().toString()));
+                    mascotasRegistro.setRaza(raza.getText().toString());
+                    mascotasRegistro.setAdicional(adici.getText().toString());
+                    mascotasRegistro.setFecha(fecha.getText().toString());
+
+                    databaseReference.child("Gatos").push().setValue(mascotasRegistro)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    databaseReference.child("Gatos").orderByKey().limitToLast(1)
+                                            .addChildEventListener(new ChildEventListener() {
+                                                @Override
+                                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                    if (snapshot.getValue() != null){
+                                                        String iddd = snapshot.getKey();
+                                                        Log.d("infoApp", "id: " + iddd);
+                                                        subirArchivoGato(uri2, iddd);
+                                                        Log.d("infoApp", "uri: " + uri2.toString());
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                                }
+
+                                                @Override
+                                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                                }
+
+                                                @Override
+                                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
 
 
+                }
+            }else {
+                Toast.makeText(RegistroAnimales.this, "Debe ingresar todos los campos", Toast.LENGTH_SHORT).show();
             }
         }else {
-            Toast.makeText(RegistroAnimales.this, "Debe ingresar todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegistroAnimales.this, "Debe tomar o elegir una foto", Toast.LENGTH_SHORT).show();
         }
 
 
 
 
     }
+    StorageReference storageReference;
+    private void subirArchivoPerro(Uri data, String iddd) {
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        storageReference.child("Perros").child( iddd + ".jpg").putFile(data)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        if (taskSnapshot.getTask().isComplete()){
+                            Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
+                            Toast.makeText(RegistroAnimales.this, "Rescatado registrado exitosamente", Toast.LENGTH_LONG).show();
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
+                Toast.makeText(RegistroAnimales.this, "no se subió la fot", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void subirArchivoGato(Uri data, String iddd) {
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        storageReference.child("Gatos").child( iddd + ".jpg").putFile(data)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        if (taskSnapshot.getTask().isComplete()){
+                            Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
+                            Toast.makeText(RegistroAnimales.this, "Rescatado registrado exitosamente", Toast.LENGTH_LONG).show();
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
+                Toast.makeText(RegistroAnimales.this, "no se subió la fot", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
