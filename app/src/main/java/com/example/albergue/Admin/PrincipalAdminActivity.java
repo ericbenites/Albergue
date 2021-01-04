@@ -34,6 +34,22 @@ public class PrincipalAdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void listarPerros (View view){
+        Intent intent = new Intent(PrincipalAdminActivity.this, AdminPerros.class);
+        String resca = "perros";
+        int valor = 8;
+        intent.putExtra("perros", valor);
+        startActivity(intent);
+    }
+
+    public void listarGatos (View view){
+        Intent intent = new Intent(PrincipalAdminActivity.this, AdminPerros.class);
+        String resca2 = "gatos";
+        int valor = 4;
+        intent.putExtra("gatos", valor);
+        startActivity(intent);
+    }
+
 
 
     public void logout(MenuItem item){

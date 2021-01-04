@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.albergue.Admin.PrincipalAdminActivity;
+import com.example.albergue.Users.MainUser;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent1);
                             finish();
                         }else {
-                            Intent intent2 = new Intent(MainActivity.this, MainUserActivity.class);
+                            Intent intent2 = new Intent(MainActivity.this, MainUser.class);
                             startActivity(intent2);
                             finish();
                         }

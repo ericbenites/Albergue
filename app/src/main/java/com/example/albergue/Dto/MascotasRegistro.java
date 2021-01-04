@@ -2,11 +2,20 @@ package com.example.albergue.Dto;
 
 public class MascotasRegistro {
 
+    private String idRescatado;
     private String nombre;
     private String peso;
     private String raza;
     private String adicional;
     private String fecha;
+
+    public String getIdRescatado() {
+        return idRescatado;
+    }
+
+    public void setIdRescatado(String idRescatado) {
+        this.idRescatado = idRescatado;
+    }
 
     public String getFecha() {
         return fecha;

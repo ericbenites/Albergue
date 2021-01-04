@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_pets1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Albergue">
-        <activity android:name=".Users.DonacionesUsers"></activity>
+        <activity android:name=".PerroDetalle"></activity>
+        <activity android:name=".Users.DonacionesUsers" />
         <activity android:name=".Users.MainUser" />
         <activity android:name=".Admin.AdminPerros" />
         <activity android:name=".Admin.RegistroAnimales" />
