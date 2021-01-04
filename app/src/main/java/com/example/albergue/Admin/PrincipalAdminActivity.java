@@ -10,7 +10,6 @@ import android.view.View;
 
 import com.example.albergue.MainActivity;
 import com.example.albergue.R;
-import com.example.albergue.RegistroAnimales;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
 
