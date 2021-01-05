@@ -4,5 +4,6 @@
         <item>Perro</item>
         <item>Gato</item>
     </string-array>
+    <string name="map_key" translatable="false">AIzaSyBQI2ycUJ-JfiBInTctm69VhnwZgklUqx8</string>
 
 </resources>

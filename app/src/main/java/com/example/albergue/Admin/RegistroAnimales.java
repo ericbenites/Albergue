@@ -153,7 +153,7 @@ public class RegistroAnimales extends AppCompatActivity {
         }
 
         else {
-            Toast.makeText(this, "no se pudo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "no se seleccionó una foto", Toast.LENGTH_SHORT).show();
             Log.d("infoApp", String.valueOf(requestCode));
             Log.d("infoApp", String.valueOf(requestCode));
 
@@ -162,7 +162,7 @@ public class RegistroAnimales extends AppCompatActivity {
 
     }
 
-    String rutaFoto;
+    private String rutaFoto;
 
     private File createImageFile() throws IOException {
         //create an image file name
@@ -280,7 +280,7 @@ public class RegistroAnimales extends AppCompatActivity {
 
                     MascotasRegistro mascotasRegistro = new MascotasRegistro();
                     mascotasRegistro.setNombre(nombre.getText().toString());
-                    //mascotasRegistro.setPeso(Double.valueOf(peso.getText().toString()));
+                    mascotasRegistro.setPeso(peso1);
                     mascotasRegistro.setRaza(raza.getText().toString());
                     mascotasRegistro.setAdicional(adici.getText().toString());
                     mascotasRegistro.setFecha(fecha.getText().toString());
