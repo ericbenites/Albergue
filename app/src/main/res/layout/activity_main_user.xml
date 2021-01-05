@@ -8,24 +8,26 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="184dp"
-        android:layout_height="203dp"
+        android:layout_width="157dp"
+        android:layout_height="172dp"
         android:layout_marginStart="16dp"
+        android:onClick="listarPerrosUser"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton3"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/perros" />
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:layout_width="175dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="147dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="20dp"
+        android:onClick="listarGatosUser"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.932"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gatos" />
 
@@ -43,22 +45,25 @@
 
     <ImageButton
         android:id="@+id/imageButton5"
-        android:layout_width="187dp"
-        android:layout_height="193dp"
+        android:layout_width="149dp"
+        android:layout_height="154dp"
         android:layout_marginStart="16dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton6"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/huellasperroygato" />
 
     <ImageButton
         android:id="@+id/imageButton6"
-        android:layout_width="176dp"
-        android:layout_height="195dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="156dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="12dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintStart_toEndOf="@+id/imageButton5"
         app:layout_constraintTop_toBottomOf="@+id/imageButton3"
         app:srcCompat="@drawable/ubicacion" />

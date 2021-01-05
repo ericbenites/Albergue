@@ -5,15 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.albergue.Adaptadores.ListaGatosAdapter;
 import com.example.albergue.Adaptadores.ListaPerrosAdapter;
 import com.example.albergue.Dto.MascotasRegistro;
 import com.example.albergue.R;
+import com.example.albergue.Users.MainUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,13 +23,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AdminPerros extends AppCompatActivity {
+public class AdminPerrosGatos extends AppCompatActivity {
 
     ArrayList<MascotasRegistro> listaPerrosGatos = new ArrayList<>();
     RecyclerView perroRecycler;
     ListaPerrosAdapter listaPerrosAdapter;
     ListaGatosAdapter listaGatosAdapter;
     DatabaseReference databaseReference;
+    private int valor22, valor11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,9 @@ public class AdminPerros extends AppCompatActivity {
 
         int rescatado1 = getIntent().getIntExtra("perros", 0);
         int rescatado2 = getIntent().getIntExtra("gatos", 0);
+        valor22 = getIntent().getIntExtra("usuario", 0);
+        valor11 = getIntent().getIntExtra("admin", 0);
+
         //String rescatado2 = getIntent().getStringExtra("gatos");
         Log.d("infoApp", "llegue a AdminPerros");
         Log.d("infoApp", String.valueOf(rescatado1));
@@ -48,7 +53,7 @@ public class AdminPerros extends AppCompatActivity {
         } else if (rescatado2 <5){
             listarGatos();
         } else {
-            Toast.makeText(AdminPerros.this, "no ingresó a ninguno", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdminPerrosGatos.this, "no ingresó a ninguno", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -68,10 +73,10 @@ public class AdminPerros extends AppCompatActivity {
 
                 perroRecycler = findViewById(R.id.rvPerros);
 
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AdminPerros.this);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AdminPerrosGatos.this);
                 perroRecycler.setLayoutManager(linearLayoutManager);
 
-                listaGatosAdapter = new ListaGatosAdapter(listaPerrosGatos, AdminPerros.this);
+                listaGatosAdapter = new ListaGatosAdapter(listaPerrosGatos, AdminPerrosGatos.this);
                 perroRecycler.setAdapter(listaGatosAdapter);
             }
 
@@ -97,10 +102,10 @@ public class AdminPerros extends AppCompatActivity {
 
                 perroRecycler = findViewById(R.id.rvPerros);
 
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AdminPerros.this);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AdminPerrosGatos.this);
                 perroRecycler.setLayoutManager(linearLayoutManager);
 
-                listaPerrosAdapter = new ListaPerrosAdapter(listaPerrosGatos, AdminPerros.this);
+                listaPerrosAdapter = new ListaPerrosAdapter(listaPerrosGatos, AdminPerrosGatos.this);
                 perroRecycler.setAdapter(listaPerrosAdapter);
             }
 
@@ -110,4 +115,25 @@ public class AdminPerros extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        Log.d("infoApp", String.valueOf(valor22));
+        if(valor22 > 15){
+            Intent intent = new Intent(AdminPerrosGatos.this, MainUser.class);
+            startActivity(intent);
+            finish();
+        }else if (valor11 < 15){
+            Intent intent2 = new Intent(AdminPerrosGatos.this, PrincipalAdminActivity.class);
+            startActivity(intent2);
+            finish();
+        }
+
+
+    }
+
+
+
 }

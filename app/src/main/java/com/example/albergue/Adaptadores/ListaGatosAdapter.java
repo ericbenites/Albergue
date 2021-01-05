@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.albergue.Dto.MascotasRegistro;
-import com.example.albergue.PerroDetalle;
+import com.example.albergue.RescatadoDetalle;
 import com.example.albergue.R;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -50,7 +50,7 @@ public class ListaGatosAdapter extends RecyclerView.Adapter<ListaGatosAdapter.Vi
         holder.conocemas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, PerroDetalle.class);
+                Intent intent = new Intent(context, RescatadoDetalle.class);
                 intent.putExtra("nombre", mascotasRegistro.getNombre());
                 intent.putExtra("peso", mascotasRegistro.getPeso());
                 intent.putExtra("raza", mascotasRegistro.getRaza());

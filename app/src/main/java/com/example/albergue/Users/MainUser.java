@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.albergue.Admin.AdminPerrosGatos;
+import com.example.albergue.Admin.PrincipalAdminActivity;
 import com.example.albergue.MainActivity;
 import com.example.albergue.R;
 import com.firebase.ui.auth.AuthUI;
@@ -19,6 +23,30 @@ public class MainUser extends AppCompatActivity {
         setContentView(R.layout.activity_main_user);
     }
 
+
+    public void listarPerrosUser (View view){
+        Intent intent = new Intent(MainUser.this, AdminPerrosGatos.class);
+        String resca = "perros";
+        int valor = 8;
+        intent.putExtra("perros", valor);
+        intent.putExtra("usuario", 20);
+        startActivity(intent);
+    }
+
+    public void listarGatosUser (View view){
+        Intent intent = new Intent(MainUser.this, AdminPerrosGatos.class);
+        String resca2 = "gatos";
+        int valor = 4;
+        intent.putExtra("gatos", valor);
+        intent.putExtra("usuario", 20);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_4main, menu);
+        return true;
+    }
 
     public void logout(MenuItem item){
         AuthUI instancia = AuthUI.getInstance();
