@@ -25,10 +25,10 @@ import java.util.ArrayList;
 
 public class AdminPerrosGatos extends AppCompatActivity {
 
-    ArrayList<MascotasRegistro> listaPerrosGatos = new ArrayList<>();
+    private ArrayList<MascotasRegistro> listaPerrosGatos = new ArrayList<>();
     RecyclerView perroRecycler;
-    ListaPerrosAdapter listaPerrosAdapter;
-    ListaGatosAdapter listaGatosAdapter;
+    private ListaPerrosAdapter listaPerrosAdapter;
+    private ListaGatosAdapter listaGatosAdapter;
     DatabaseReference databaseReference;
     private int valor22, valor11;
 

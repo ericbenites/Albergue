@@ -28,7 +28,7 @@ public class VerUbicacion extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getSupportFragmentManager().findFragmentById(R.id.google_map1);
         supportMapFragment.getMapAsync(this);
-        Toast.makeText(VerUbicacion.this, "Tocar la pantalla para ver la ubicación", Toast.LENGTH_SHORT).show();
+        Toast.makeText(VerUbicacion.this, "Tocar la pantalla para ver la ubicación", Toast.LENGTH_LONG).show();
 
         latitud1 = getIntent().getDoubleExtra("latitud",0);
         longitud1 = getIntent().getDoubleExtra("longitud", 0);

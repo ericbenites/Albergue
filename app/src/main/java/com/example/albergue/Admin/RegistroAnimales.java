@@ -9,6 +9,8 @@ import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -19,9 +21,11 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.albergue.Dto.MascotasRegistro;
@@ -39,6 +43,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class RegistroAnimales extends AppCompatActivity {
 
@@ -51,7 +56,9 @@ public class RegistroAnimales extends AppCompatActivity {
     private static final int CAMERA_PERM_CODE = 101;
     private static final int CAMERA_REQUEST_CODE = 102;
     public String [] permissions ;
-
+    private int fYear, fMes, fDia;
+    static final int DATE_ID = 0;
+    Calendar C;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +94,36 @@ public class RegistroAnimales extends AppCompatActivity {
             }
         });
 
+        TextView fecha1 = findViewById(R.id.textViewfechaRegistro);
+        fecha1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obtenerFecha();
+            }
+        });
+
     }
+
+    private void obtenerFecha() {
+        C = Calendar.getInstance();
+        TextView fechaHoy = findViewById(R.id.textViewfechaRegistro);
+        fMes = C.get(Calendar.MONTH);
+        fDia = C.get(Calendar.DAY_OF_MONTH);
+        fYear = C.get(Calendar.YEAR);
+
+        DatePickerDialog fecha = new DatePickerDialog(RegistroAnimales.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        int mes = month + 1;
+                        String fechaa = dayOfMonth + "/" + mes + "/" + year;
+                        fechaHoy.setText(fechaa);
+                    }
+                }, fYear, fMes, fDia);
+        fecha.show();
+
+    }
+
 
     private void permisosCamara() {
         //Request for camera permission
@@ -205,7 +241,7 @@ public class RegistroAnimales extends AppCompatActivity {
         EditText raza = findViewById(R.id.editTextRaza);
         EditText adici = findViewById(R.id.editTextAdicional);
         Spinner spinner = findViewById(R.id.spinnerRegistro);
-        EditText fecha = findViewById(R.id.editTextDateRegistro);
+        TextView fecha = findViewById(R.id.textViewfechaRegistro);
 
 
         String peso1 = (peso.getText().toString());
@@ -262,10 +298,6 @@ public class RegistroAnimales extends AppCompatActivity {
 
                                         }
                                     });
-                                    /*Intent intent = new Intent(RegistroAnimales.this, PrincipalAdminActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                    Toast.makeText(RegistroAnimales.this, "Rescatado registrado exitosamente", Toast.LENGTH_LONG).show();*/
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {

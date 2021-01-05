@@ -89,6 +89,16 @@ public class PrincipalAdminActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 44){
+            if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_DENIED ){
+                //when permission grated
+                //call method
+                getLocation();
+            }
+        }
+    }
 
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
