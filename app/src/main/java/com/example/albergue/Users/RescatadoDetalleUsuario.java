@@ -31,7 +31,7 @@ public class RescatadoDetalleUsuario extends AppCompatActivity {
         fecha = getIntent().getStringExtra("fecha");
         idRescatado = getIntent().getStringExtra("idRescatado");
         tipo1 = getIntent().getIntExtra("tipo1", 0); //perro:5
-        tipo2 = getIntent().getIntExtra("tipo2", 0); //gato:10
+        tipo2 = getIntent().getIntExtra("tipo2", 0); //gato:20
         imageRescatado1 = findViewById(R.id.imageRescatadoDetalleUsuario);
 
         Log.d("infoApp", nombre);

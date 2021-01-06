@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.RescatadoEditar">
+
+    <ImageView
+        android:id="@+id/imageViewEditar"
+        android:layout_width="197dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/perrogatofotoprevia" />
+
+    <Button
+        android:id="@+id/buttonElegirFotoEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="Elegir foto"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonTomarFotoEditar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonTomarFotoEditar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonTomarFotoEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
+        android:text="Tomar foto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewEditar" />
+
+    <TextView
+        android:id="@+id/textView4Editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Nombre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTomarFotoEditar"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <EditText
+        android:id="@+id/editTextNombreRescatadoEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView4Editar"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <TextView
+        android:id="@+id/textView5Editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Peso"
+        app:layout_constraintEnd_toEndOf="@+id/textView4Editar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView4Editar"
+        app:layout_constraintTop_toBottomOf="@+id/textView4Editar" />
+
+    <TextView
+        android:id="@+id/textView6Editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Rescatado"
+        app:layout_constraintEnd_toEndOf="@+id/textView5Editar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView5Editar"
+        app:layout_constraintTop_toBottomOf="@+id/textView5Editar" />
+
+    <EditText
+        android:id="@+id/editTextNumberPesoEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:ems="10"
+        android:hint="Peso (Kg)"
+        android:inputType="number|numberDecimal"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView5Editar" />
+
+    <Spinner
+        android:id="@+id/spinnerRegistroEditar"
+        android:layout_width="188dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="44dp"
+        android:entries="@array/rescatado"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView6Editar"
+        app:layout_constraintVertical_bias="0.529" />
+
+    <TextView
+        android:id="@+id/textView7Editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Raza"
+        app:layout_constraintEnd_toEndOf="@+id/textView6Editar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView6Editar"
+        app:layout_constraintTop_toBottomOf="@+id/textView6Editar" />
+
+    <EditText
+        android:id="@+id/editTextRazaEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:ems="10"
+        android:hint="Raza"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView7Editar"
+        app:layout_constraintVertical_bias="0.461" />
+
+    <TextView
+        android:id="@+id/textView8Editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Lugar"
+        app:layout_constraintEnd_toEndOf="@+id/textView9Editar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView9Editar"
+        app:layout_constraintTop_toBottomOf="@+id/textView9Editar" />
+
+
+    <EditText
+        android:id="@+id/editTextAdicionalEditar"
+        android:layout_width="190dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="44dp"
+        android:ems="10"
+        android:hint="Dónde fue encontrado"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView8Editar"
+        app:layout_constraintVertical_bias="0.375" />
+
+
+    <Button
+        android:id="@+id/buttonRegistrarCambios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:onClick="guardarCambios"
+        android:text="registrar rescatado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9Editar"
+        android:layout_width="43dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="40dp"
+        android:text="Fecha"
+        app:layout_constraintEnd_toEndOf="@+id/textView7Editar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView7Editar"
+        app:layout_constraintTop_toBottomOf="@+id/textView7Editar" />
+
+    <TextView
+        android:id="@+id/textViewfechaRegistroEditar"
+        android:layout_width="187dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="44dp"
+        android:text="Presionar para elegir fecha"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9Editar"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

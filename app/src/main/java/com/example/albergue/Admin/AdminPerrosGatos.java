@@ -37,10 +37,10 @@ public class AdminPerrosGatos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_perros);
 
-        int rescatado1 = getIntent().getIntExtra("perros", 0);
-        int rescatado2 = getIntent().getIntExtra("gatos", 0);
-        valor22 = getIntent().getIntExtra("usuario", 0);
-        valor11 = getIntent().getIntExtra("admin", 0);
+        int rescatado1 = getIntent().getIntExtra("perros", 0);//8
+        int rescatado2 = getIntent().getIntExtra("gatos", 0);//4
+        valor22 = getIntent().getIntExtra("usuario", 0);//20
+        valor11 = getIntent().getIntExtra("admin", 0);//10
 
         //String rescatado2 = getIntent().getStringExtra("gatos");
         Log.d("infoApp", "llegue a AdminPerros");
@@ -50,7 +50,7 @@ public class AdminPerrosGatos extends AppCompatActivity {
 
         if (rescatado1 > 5){
             listarPerros();
-        } else if (rescatado2 <5){
+        } else if (rescatado2 > 3){
             listarGatos();
         } else {
             Toast.makeText(AdminPerrosGatos.this, "no ingresó a ninguno", Toast.LENGTH_SHORT).show();

@@ -61,6 +61,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="12dp"
+        android:onClick="verUbicacion"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.814"

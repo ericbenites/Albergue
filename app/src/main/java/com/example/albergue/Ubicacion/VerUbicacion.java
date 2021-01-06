@@ -19,6 +19,7 @@ public class VerUbicacion extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap gMap;
     private Double latitud1;
     private Double longitud1;
+    private int usuario, admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,10 @@ public class VerUbicacion extends AppCompatActivity implements OnMapReadyCallbac
 
         latitud1 = getIntent().getDoubleExtra("latitud",0);
         longitud1 = getIntent().getDoubleExtra("longitud", 0);
+        usuario = getIntent().getIntExtra("usuario", 0);//4
+        admin = getIntent().getIntExtra("admin", 0);//20
         Log.d("infoApp", "ver ubicacion latuitud:  " + latitud1.toString());
         Log.d("infoApp", "ver ubicacion longitu:  " + longitud1.toString());
-
 
 
     }
@@ -62,8 +64,12 @@ public class VerUbicacion extends AppCompatActivity implements OnMapReadyCallbac
                 Log.d("infoApp", latLng.latitude +"/" + latLng.longitude);
 
                 if (latLng.latitude != 0){
-                    //Toast.makeText(VerUbicacion.this, "Tenemos registrada su ubicación", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(VerUbicacion.this, "Volver atrás para regresar al menú principal", Toast.LENGTH_LONG).show();
+                    if (admin > 10) {
+                        Toast.makeText(VerUbicacion.this, "Tenemos registrada su ubicación", Toast.LENGTH_LONG).show();
+                    }else if (usuario > 2) {
+                        Toast.makeText(VerUbicacion.this, "Esta es la ubicación del Albergue", Toast.LENGTH_LONG).show();
+                    }
+
                 }
             }
         });

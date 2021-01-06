@@ -36,7 +36,7 @@ import java.util.Locale;
 
 public class PrincipalAdminActivity extends AppCompatActivity {
 
-    private FusedLocationProviderClient fusedLocationProviderClient;
+    FusedLocationProviderClient fusedLocationProviderClient;
     private Double lat1, long1;
     private UbicacionAlbergue ubicacionAlbergue;
 
@@ -123,7 +123,7 @@ public class PrincipalAdminActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Location> task) {
                     //Initialize location
                     Location location = task.getResult();
-                    if (location != null){
+                    if (location != null) {
 
                         try {
                             //Initialize geoCoder
@@ -154,9 +154,8 @@ public class PrincipalAdminActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    Log.d("infoApp", "fallo de ubicación");
-                }
 
+                }
             });
         }
 
@@ -175,6 +174,7 @@ public class PrincipalAdminActivity extends AppCompatActivity {
                 Intent intent = new Intent(PrincipalAdminActivity.this, VerUbicacion.class);
                 intent.putExtra("latitud", lat1);
                 intent.putExtra("longitud", long1);
+                intent.putExtra("admin", 20);
                 startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {

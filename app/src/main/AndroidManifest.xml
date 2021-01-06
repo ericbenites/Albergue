@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_pets1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Albergue">
-        <activity android:name=".Users.RescatadoDetalleUsuario"></activity>
+        <activity android:name=".Admin.RescatadoEditar"></activity>
+        <activity android:name=".Users.RescatadoDetalleUsuario" />
         <activity android:name=".Ubicacion.VerUbicacion" />
         <activity android:name=".RescatadoDetalle" />
         <activity android:name=".Users.DonacionesUsers" />

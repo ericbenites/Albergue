@@ -64,6 +64,7 @@ public class ListaGatosAdapter extends RecyclerView.Adapter<ListaGatosAdapter.Vi
                     intent.putExtra("adicional", mascotasRegistro.getAdicional());
                     intent.putExtra("fecha", mascotasRegistro.getFecha());
                     intent.putExtra("idRescatado", mascotasRegistro.getIdRescatado());
+                    intent.putExtra("tiporescatado", "Perro" );
                     intent.putExtra("tipo2", "10");
                     context.startActivity(intent);
                 }else {
@@ -74,6 +75,7 @@ public class ListaGatosAdapter extends RecyclerView.Adapter<ListaGatosAdapter.Vi
                     intent.putExtra("adicional", mascotasRegistro.getAdicional());
                     intent.putExtra("fecha", mascotasRegistro.getFecha());
                     intent.putExtra("idRescatado", mascotasRegistro.getIdRescatado());
+                    intent.putExtra("tiporescatado", "Perro" );
                     intent.putExtra("tipo2", 10);
                     context.startActivity(intent);
                 }
