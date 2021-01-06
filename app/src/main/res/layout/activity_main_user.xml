@@ -48,6 +48,7 @@
         android:layout_width="149dp"
         android:layout_height="154dp"
         android:layout_marginStart="16dp"
+        android:onClick="verFormaDonaciones"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
         app:layout_constraintStart_toStartOf="parent"

@@ -199,6 +199,12 @@ public class PrincipalAdminActivity extends AppCompatActivity {
         });
     }
 
+    public void irDonacionesAdmin(View view){
+        Intent intent = new Intent(PrincipalAdminActivity.this, DonacionesAdmin.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

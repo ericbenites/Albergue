@@ -15,25 +15,35 @@
         android:roundIcon="@mipmap/ic_pets1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Albergue">
-        <activity android:name=".Admin.RescatadoEditar"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Users.RescatadoDetalleUsuario"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.DonacionesAdmin" />
+        <activity
+            android:name=".Admin.RescatadoEditar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Users.RescatadoDetalleUsuario"
+            android:screenOrientation="portrait" />
         <activity android:name=".Ubicacion.VerUbicacion" />
-        <activity android:name=".RescatadoDetalle"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Users.DonacionesUsers"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Users.MainUser"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Admin.AdminPerrosGatos"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Admin.RegistroAnimales"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Admin.PrincipalAdminActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".RegistroActivity"  />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".RescatadoDetalle"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Users.DonacionesUsers"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Users.MainUser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Admin.AdminPerrosGatos"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Admin.RegistroAnimales"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Admin.PrincipalAdminActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RegistroActivity" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

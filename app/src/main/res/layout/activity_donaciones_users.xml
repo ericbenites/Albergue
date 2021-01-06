@@ -10,17 +10,72 @@
         android:id="@+id/imageView3"
         android:layout_width="154dp"
         android:layout_height="152dp"
-        app:srcCompat="@drawable/yape"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="102dp" />
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/yape" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="162dp"
         android:layout_height="163dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/lukita2"
-        tools:layout_editor_absoluteY="102dp" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numeroYapeUsuario"
+        app:srcCompat="@drawable/lukita2" />
+
+    <TextView
+        android:id="@+id/yapeNombreUsuario"
+        android:layout_width="187dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="28dp"
+        android:text="nombre de la persona"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/numeroYapeUsuario"
+        android:layout_width="159dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/yapeNombreUsuario"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/yapeNombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/yapeNombreUsuario" />
+
+    <TextView
+        android:id="@+id/lukitaNombreUsuario"
+        android:layout_width="131dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+    <TextView
+        android:id="@+id/lukitoNumeroUsuario"
+        android:layout_width="131dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/lukitaNombreUsuario"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lukitaNombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/lukitaNombreUsuario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

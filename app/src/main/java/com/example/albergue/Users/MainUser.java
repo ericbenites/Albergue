@@ -121,4 +121,9 @@ public class MainUser extends AppCompatActivity {
         });
     }
 
+    public void verFormaDonaciones(View view){
+        Intent intent = new Intent(MainUser.this, DonacionesUsers.class);
+        startActivity(intent);
+    }
+
 }
