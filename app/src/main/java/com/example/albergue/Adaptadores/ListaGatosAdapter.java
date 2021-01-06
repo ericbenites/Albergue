@@ -16,6 +16,9 @@ import com.bumptech.glide.Glide;
 import com.example.albergue.Dto.MascotasRegistro;
 import com.example.albergue.RescatadoDetalle;
 import com.example.albergue.R;
+import com.example.albergue.Users.RescatadoDetalleUsuario;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -45,19 +48,37 @@ public class ListaGatosAdapter extends RecyclerView.Adapter<ListaGatosAdapter.Vi
         StorageReference storageReference = FirebaseStorage.getInstance()
                 .getReference().child("Gatos").child(mascotasRegistro.getIdRescatado() + ".jpg");
         Glide.with(holder.imagenRescatado.getContext()).load(storageReference).into(holder.imagenRescatado);
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = usuario.getUid();
         holder.nombre.setText(mascotasRegistro.getNombre());
 
         holder.conocemas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, RescatadoDetalle.class);
-                intent.putExtra("nombre", mascotasRegistro.getNombre());
-                intent.putExtra("peso", mascotasRegistro.getPeso());
-                intent.putExtra("raza", mascotasRegistro.getRaza());
-                intent.putExtra("adicional", mascotasRegistro.getAdicional());
-                intent.putExtra("fecha", mascotasRegistro.getFecha());
-                intent.putExtra("idRescatado", mascotasRegistro.getIdRescatado());
-                context.startActivity(intent);
+
+                if (uid.equals("W0pfxu2AwPd51rytX7Lb1jVhXKF2")){
+                    Intent intent = new Intent(context, RescatadoDetalle.class);
+                    intent.putExtra("nombre", mascotasRegistro.getNombre());
+                    intent.putExtra("peso", mascotasRegistro.getPeso());
+                    intent.putExtra("raza", mascotasRegistro.getRaza());
+                    intent.putExtra("adicional", mascotasRegistro.getAdicional());
+                    intent.putExtra("fecha", mascotasRegistro.getFecha());
+                    intent.putExtra("idRescatado", mascotasRegistro.getIdRescatado());
+                    intent.putExtra("tipo2", "10");
+                    context.startActivity(intent);
+                }else {
+                    Intent intent = new Intent(context, RescatadoDetalleUsuario.class);
+                    intent.putExtra("nombre", mascotasRegistro.getNombre());
+                    intent.putExtra("peso", mascotasRegistro.getPeso());
+                    intent.putExtra("raza", mascotasRegistro.getRaza());
+                    intent.putExtra("adicional", mascotasRegistro.getAdicional());
+                    intent.putExtra("fecha", mascotasRegistro.getFecha());
+                    intent.putExtra("idRescatado", mascotasRegistro.getIdRescatado());
+                    intent.putExtra("tipo2", 10);
+                    context.startActivity(intent);
+                }
+
+
             }
         });
     }

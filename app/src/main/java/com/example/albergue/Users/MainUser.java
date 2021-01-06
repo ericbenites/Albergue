@@ -44,11 +44,11 @@ public class MainUser extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_4main, menu);
+        getMenuInflater().inflate(R.menu.menusuario, menu);
         return true;
     }
 
-    public void logout(MenuItem item){
+    public void cerrarSesion(MenuItem item){
         AuthUI instancia = AuthUI.getInstance();
         instancia.signOut(this).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

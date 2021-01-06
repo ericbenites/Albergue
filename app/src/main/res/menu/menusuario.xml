@@ -4,10 +4,6 @@
 
     <item
         android:title="Cerrar sesión"
-        android:onClick="logout"
+        android:onClick="cerrarSesion"
         app:showAsAction="ifRoom" />
-    <item
-        android:onClick="escogerUbicacion"
-        android:title="Agregar ubicación actual"
-        app:showAsAction="collapseActionView" />
 </menu>

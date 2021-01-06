@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_pets1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Albergue">
+        <activity android:name=".Users.RescatadoDetalleUsuario"></activity>
         <activity android:name=".Ubicacion.VerUbicacion" />
         <activity android:name=".RescatadoDetalle" />
         <activity android:name=".Users.DonacionesUsers" />
@@ -30,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />

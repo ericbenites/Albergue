@@ -34,6 +34,9 @@ public class VerUbicacion extends AppCompatActivity implements OnMapReadyCallbac
         longitud1 = getIntent().getDoubleExtra("longitud", 0);
         Log.d("infoApp", "ver ubicacion latuitud:  " + latitud1.toString());
         Log.d("infoApp", "ver ubicacion longitu:  " + longitud1.toString());
+
+
+
     }
 
     @Override

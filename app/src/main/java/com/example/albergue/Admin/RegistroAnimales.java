@@ -325,6 +325,7 @@ public class RegistroAnimales extends AppCompatActivity {
                                             .addChildEventListener(new ChildEventListener() {
                                                 @Override
                                                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                    Log.d("infoApp", "se guardo en database");
                                                     if (snapshot.getValue() != null){
                                                         String iddd = snapshot.getKey();
                                                         Log.d("infoApp", "id: " + iddd);

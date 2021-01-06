@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.albergue.Dto.UbicacionAlbergue;
 import com.example.albergue.MainActivity;
 import com.example.albergue.R;
 import com.example.albergue.Ubicacion.VerUbicacion;
@@ -23,8 +24,11 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +38,7 @@ public class PrincipalAdminActivity extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Double lat1, long1;
+    private UbicacionAlbergue ubicacionAlbergue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +115,8 @@ public class PrincipalAdminActivity extends AppCompatActivity {
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             return;
-        }else if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        }else if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
 
             fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
                 @Override
@@ -148,17 +154,37 @@ public class PrincipalAdminActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-
+                    Log.d("infoApp", "fallo de ubicación");
                 }
+
             });
         }
+
     }
 
     private void verUbicacionEnMapa() {
-        Intent intent = new Intent(PrincipalAdminActivity.this, VerUbicacion.class);
-        intent.putExtra("latitud", lat1);
-        intent.putExtra("longitud", long1);
-        startActivity(intent);
+
+        ubicacionAlbergue = new UbicacionAlbergue();
+        ubicacionAlbergue.setLatitud(lat1);
+        ubicacionAlbergue.setLongitud(long1);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Ubicacion").push().setValue(ubicacionAlbergue)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Intent intent = new Intent(PrincipalAdminActivity.this, VerUbicacion.class);
+                intent.putExtra("latitud", lat1);
+                intent.putExtra("longitud", long1);
+                startActivity(intent);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("infoApp", "no se guardó la ubicación en database");
+            }
+        });
+
+
     }
 
 
