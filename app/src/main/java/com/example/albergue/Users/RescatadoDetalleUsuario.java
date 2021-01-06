@@ -37,7 +37,7 @@ public class RescatadoDetalleUsuario extends AppCompatActivity {
         Log.d("infoApp", nombre);
         Log.d("infoApp", String.valueOf(tipo1));
         Log.d("infoApp", String.valueOf(tipo2));
-        //verDetalle1(tipo1, tipo2);
+        verDetalle1(tipo1, tipo2);
 
     }
 
@@ -59,7 +59,7 @@ public class RescatadoDetalleUsuario extends AppCompatActivity {
         TextView pesoText1 = findViewById(R.id.pesoDetalleUsuario);
         TextView razaText1 = findViewById(R.id.razaDetalleUsuario);
         TextView adicionalText1 = findViewById(R.id.historiaDetalleUsuario);
-        TextView fechaText1 = findViewById(R.id.fechaDetalleAdmin);
+        TextView fechaText1 = findViewById(R.id.fechaDetalleUsuario);
 
         Log.d("infoApp", nombre);
         nombreText1.setText(nombre);
@@ -74,11 +74,11 @@ public class RescatadoDetalleUsuario extends AppCompatActivity {
                 FirebaseStorage.getInstance().getReference().child("Perros").child(idRescatado + ".jpg");
         Glide.with(this).load(storageReference).into(imageRescatado1);
 
-        TextView nombreText1 = findViewById(R.id.nombreDetalleAdmin);
-        TextView pesoText1 = findViewById(R.id.pesoDetalleAdmin);
-        TextView razaText1 = findViewById(R.id.razaDetalleAdmin);
-        TextView adicionalText1 = findViewById(R.id.historiaDetalleAdmin);
-        TextView fechaText1 = findViewById(R.id.fechaDetalleAdmin);
+        TextView nombreText1 = findViewById(R.id.nombreDetalleUsuario);
+        TextView pesoText1 = findViewById(R.id.pesoDetalleUsuario);
+        TextView razaText1 = findViewById(R.id.razaDetalleUsuario);
+        TextView adicionalText1 = findViewById(R.id.historiaDetalleUsuario);
+        TextView fechaText1 = findViewById(R.id.fechaDetalleUsuario);
 
         nombreText1.setText(nombre);
         pesoText1.setText(peso);
