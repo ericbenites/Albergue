@@ -66,23 +66,12 @@
         android:id="@+id/textView5Editar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Peso"
+        android:layout_marginTop="35dp"
+        android:text="Edad"
         app:layout_constraintEnd_toEndOf="@+id/textView4Editar"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView4Editar"
         app:layout_constraintTop_toBottomOf="@+id/textView4Editar" />
-
-    <TextView
-        android:id="@+id/textView6Editar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Rescatado"
-        app:layout_constraintEnd_toEndOf="@+id/textView5Editar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView5Editar"
-        app:layout_constraintTop_toBottomOf="@+id/textView5Editar" />
 
     <EditText
         android:id="@+id/editTextNumberPesoEditar"
@@ -90,34 +79,23 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="44dp"
         android:ems="10"
-        android:hint="Peso (Kg)"
-        android:inputType="number|numberDecimal"
+        android:hint="Edad(años)"
+        android:inputType="number"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView5Editar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView5Editar" />
 
-    <Spinner
-        android:id="@+id/spinnerRegistroEditar"
-        android:layout_width="188dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="44dp"
-        android:entries="@array/rescatado"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6Editar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView6Editar"
-        app:layout_constraintVertical_bias="0.529" />
-
     <TextView
         android:id="@+id/textView7Editar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="35dp"
         android:text="Raza"
-        app:layout_constraintEnd_toEndOf="@+id/textView6Editar"
+        app:layout_constraintEnd_toEndOf="@+id/textView5Editar"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView6Editar"
-        app:layout_constraintTop_toBottomOf="@+id/textView6Editar" />
+        app:layout_constraintStart_toStartOf="@+id/textView5Editar"
+        app:layout_constraintTop_toBottomOf="@+id/textView5Editar" />
 
     <EditText
         android:id="@+id/editTextRazaEditar"
@@ -137,7 +115,7 @@
         android:id="@+id/textView8Editar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:text="Lugar"
         app:layout_constraintEnd_toEndOf="@+id/textView9Editar"
         app:layout_constraintHorizontal_bias="0.0"
@@ -164,19 +142,18 @@
         android:id="@+id/buttonRegistrarCambios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:onClick="guardarCambios"
-        android:text="registrar rescatado"
+        android:text="editar rescatado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView9Editar"
         android:layout_width="43dp"
         android:layout_height="28dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:text="Fecha"
         app:layout_constraintEnd_toEndOf="@+id/textView7Editar"
         app:layout_constraintHorizontal_bias="0.0"

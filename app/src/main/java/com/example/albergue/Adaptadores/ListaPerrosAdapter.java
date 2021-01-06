@@ -67,7 +67,7 @@ public class ListaPerrosAdapter extends RecyclerView.Adapter<ListaPerrosAdapter.
                     intent.putExtra("fecha", mascotasRegistro.getFecha());
                     intent.putExtra("idRescatado", mascotasRegistro.getIdRescatado());
                     intent.putExtra("tiporescatado", "Perro" );
-                    intent.putExtra("tipo1", "5");
+                    intent.putExtra("tipo1", 5);
                     context.startActivity(intent);
                 }else {
                     Intent intent = new Intent(context, RescatadoDetalleUsuario.class);

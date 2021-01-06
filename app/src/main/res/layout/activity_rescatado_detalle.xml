@@ -32,7 +32,7 @@
         android:layout_width="76dp"
         android:layout_height="24dp"
         android:layout_marginTop="24dp"
-        android:text="Peso"
+        android:text="Edad(años)"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView13"
@@ -42,7 +42,7 @@
         android:id="@+id/textView15"
         android:layout_width="51dp"
         android:layout_height="23dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="Raza"
         app:layout_constraintEnd_toEndOf="@+id/textView14"
         app:layout_constraintHorizontal_bias="0.0"
@@ -51,10 +51,11 @@
 
     <TextView
         android:id="@+id/nombreDetalleAdmin"
-        android:layout_width="110dp"
-        android:layout_height="31dp"
-        android:layout_marginEnd="112dp"
+        android:layout_width="136dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="110dp"
         android:text="TextView"
+        android:textColor="#00B8D4"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView13"
@@ -62,10 +63,11 @@
 
     <TextView
         android:id="@+id/pesoDetalleAdmin"
-        android:layout_width="99dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="132dp"
+        android:layout_width="106dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="142dp"
         android:text="TextView"
+        android:textColor="#00B8D4"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView14"
@@ -73,10 +75,11 @@
 
     <TextView
         android:id="@+id/razaDetalleAdmin"
-        android:layout_width="110dp"
-        android:layout_height="27dp"
-        android:layout_marginEnd="116dp"
+        android:layout_width="128dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="118dp"
         android:text="TextView"
+        android:textColor="#00B8D4"
         app:layout_constraintBottom_toBottomOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView15"
@@ -95,20 +98,22 @@
 
     <ScrollView
         android:id="@+id/historia"
-        android:layout_width="169dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="68dp"
+        android:layout_width="216dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView19">
+        app:layout_constraintTop_toTopOf="@+id/textView19"
+        app:layout_constraintVertical_bias="0.125">
 
         <TextView
             android:id="@+id/historiaDetalleAdmin"
-            android:layout_width="155dp"
-            android:layout_height="50dp"
+            android:layout_width="205dp"
+            android:layout_height="60dp"
             android:layout_marginEnd="108dp"
             android:text="Esta es la historia que tendra el perro y vamos a contar
-                    a todos, de acuerdo?" />
+                    a todos, de acuerdo? probando lo necesario para que ingrese todo"
+            android:textColor="#00B8D4" />
     </ScrollView>
 
     <TextView
@@ -124,10 +129,11 @@
 
     <TextView
         android:id="@+id/fechaDetalleAdmin"
-        android:layout_width="94dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="128dp"
+        android:layout_width="104dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="142dp"
         android:text="TextView"
+        android:textColor="#00B8D4"
         app:layout_constraintBottom_toBottomOf="@+id/textView22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView22"
@@ -137,11 +143,10 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="44dp"
         android:onClick="editarRescatado"
         android:text="EDITAR INFORMACIÓN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

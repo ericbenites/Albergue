@@ -14,6 +14,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.nfc.FormatException;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -250,121 +251,142 @@ public class RegistroAnimales extends AppCompatActivity {
         String nombre1 = nombre.getText().toString();
         String fecha1 = fecha.getText().toString();
 
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         if (uri2 != null ){
-            if (!raza1.isEmpty() && !donde.isEmpty() && !fecha1.isEmpty() && !peso1.isEmpty() && !nombre1.isEmpty()){
-                if (spinner.getSelectedItem().toString().equals("Perro")) {
+            if (!raza1.isEmpty() && !donde.isEmpty() && !fecha1.isEmpty() && !peso1.isEmpty() && !nombre1.isEmpty()) {
+                int pesovalor = Integer.parseInt(peso1);
+                try {
+                    int nombrevalor = Integer.parseInt(nombre1);
+                    Toast.makeText(RegistroAnimales.this, "Debe ingresar un nombre válido", Toast.LENGTH_SHORT).show();
+                }catch (NumberFormatException e){
+                    try {
+                        int razavalor = Integer.parseInt(raza1);
+                        Toast.makeText(RegistroAnimales.this, "No puede registrar un número como raza", Toast.LENGTH_SHORT).show();
+                    }catch (NumberFormatException e1){
+                        if (pesovalor > 0 && pesovalor <= 20){
+                            if (spinner.getSelectedItem().toString().equals("Perro")) {
 
-                    MascotasRegistro mascotasRegistro = new MascotasRegistro();
-                    mascotasRegistro.setNombre(nombre.getText().toString());
-                    mascotasRegistro.setPeso(peso1);
-                    mascotasRegistro.setRaza(raza.getText().toString());
-                    mascotasRegistro.setAdicional(adici.getText().toString());
-                    mascotasRegistro.setFecha(fecha.getText().toString());
+                                MascotasRegistro mascotasRegistro = new MascotasRegistro();
+                                mascotasRegistro.setNombre(nombre.getText().toString());
+                                mascotasRegistro.setPeso(peso1);
+                                mascotasRegistro.setRaza(raza.getText().toString());
+                                mascotasRegistro.setAdicional(adici.getText().toString());
+                                mascotasRegistro.setFecha(fecha.getText().toString());
 
-                    databaseReference.child("Perros").push().setValue(mascotasRegistro)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    databaseReference.child("Perros").orderByKey().limitToLast(1)
-                                            .addChildEventListener(new ChildEventListener() {
-                                        @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                            if (snapshot.getValue() != null){
-                                                String iddd = snapshot.getKey();
-                                                Log.d("infoApp", "id: " + iddd);
-                                                subirArchivoPerro(uri2, iddd);
-                                                Log.d("infoApp", "uri: " + uri2.toString());
+                                databaseReference.child("Perros").push().setValue(mascotasRegistro)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                databaseReference.child("Perros").orderByKey().limitToLast(1)
+                                                        .addChildEventListener(new ChildEventListener() {
+                                                            @Override
+                                                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                                if (snapshot.getValue() != null) {
+                                                                    String iddd = snapshot.getKey();
+                                                                    Log.d("infoApp", "id: " + iddd);
+                                                                    subirArchivoPerro(uri2, iddd);
+                                                                    Log.d("infoApp", "uri: " + uri2.toString());
+                                                                }
+                                                            }
+
+                                                            @Override
+                                                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        });
                                             }
-                                        }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                e.printStackTrace();
+                                                Toast.makeText(RegistroAnimales.this, "No se registró", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
 
-                                        @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            } else if (spinner.getSelectedItem().toString().equals("Gato")) {
 
-                                        }
+                                MascotasRegistro mascotasRegistro = new MascotasRegistro();
+                                mascotasRegistro.setNombre(nombre.getText().toString());
+                                mascotasRegistro.setPeso(peso1);
+                                mascotasRegistro.setRaza(raza.getText().toString());
+                                mascotasRegistro.setAdicional(adici.getText().toString());
+                                mascotasRegistro.setFecha(fecha.getText().toString());
 
-                                        @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                databaseReference.child("Gatos").push().setValue(mascotasRegistro)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                databaseReference.child("Gatos").orderByKey().limitToLast(1)
+                                                        .addChildEventListener(new ChildEventListener() {
+                                                            @Override
+                                                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                                Log.d("infoApp", "se guardo en database");
+                                                                if (snapshot.getValue() != null) {
+                                                                    String iddd = snapshot.getKey();
+                                                                    Log.d("infoApp", "id: " + iddd);
+                                                                    subirArchivoGato(uri2, iddd);
+                                                                    Log.d("infoApp", "uri: " + uri2.toString());
+                                                                }
+                                                            }
 
-                                        }
+                                                            @Override
+                                                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                                        @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                            }
 
-                                        }
+                                                            @Override
+                                                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                                            }
 
-                                        }
-                                    });
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(RegistroAnimales.this, "No se registró", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                                            @Override
+                                                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                } else if (spinner.getSelectedItem().toString().equals("Gato")) {
+                                                            }
 
-                    MascotasRegistro mascotasRegistro = new MascotasRegistro();
-                    mascotasRegistro.setNombre(nombre.getText().toString());
-                    mascotasRegistro.setPeso(peso1);
-                    mascotasRegistro.setRaza(raza.getText().toString());
-                    mascotasRegistro.setAdicional(adici.getText().toString());
-                    mascotasRegistro.setFecha(fecha.getText().toString());
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
 
-                    databaseReference.child("Gatos").push().setValue(mascotasRegistro)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    databaseReference.child("Gatos").orderByKey().limitToLast(1)
-                                            .addChildEventListener(new ChildEventListener() {
-                                                @Override
-                                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                                    Log.d("infoApp", "se guardo en database");
-                                                    if (snapshot.getValue() != null){
-                                                        String iddd = snapshot.getKey();
-                                                        Log.d("infoApp", "id: " + iddd);
-                                                        subirArchivoGato(uri2, iddd);
-                                                        Log.d("infoApp", "uri: " + uri2.toString());
-                                                    }
-                                                }
+                                                            }
+                                                        });
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        });
 
-                                                @Override
-                                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                                                }
+                            }
 
-                                                @Override
-                                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                        }
+                        else {
+                            Toast.makeText(RegistroAnimales.this, "Debe ingresar una edad válida", Toast.LENGTH_LONG).show();
+                        }
 
-                                                }
-
-                                                @Override
-                                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                                }
-                                            });
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    e.printStackTrace();
-                                }
-                            });
-
+                    }
 
                 }
+
             }else {
                 Toast.makeText(RegistroAnimales.this, "Debe ingresar todos los campos", Toast.LENGTH_SHORT).show();
             }

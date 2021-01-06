@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.albergue.Admin.AdminPerrosGatos;
+import com.example.albergue.Admin.PrincipalAdminActivity;
 import com.example.albergue.Admin.RescatadoEditar;
 import com.example.albergue.Users.MainUser;
 import com.firebase.ui.auth.AuthUI;
@@ -46,15 +48,16 @@ public class RescatadoDetalle extends AppCompatActivity {
         idRescatado = getIntent().getStringExtra("idRescatado");
         tipoRescatado = getIntent().getStringExtra("tiporescatado"); //Perro o Gato
         tipo1 = getIntent().getIntExtra("tipo1", 0); //perro:5
-        tipo2 = getIntent().getIntExtra("tipo2", 0); //gato:20
+        tipo2 = getIntent().getIntExtra("tipo2", 0); //gato:10
         imageRescatado = findViewById(R.id.imageViewRescatadoDetalle);
 
+        Log.d("infoApp", "id: " +  idRescatado);
         verDetalle();
 
     }
 
     private void verDetalle() {
-        if (tipo1 < 7){
+        if (tipo1 > 3){
             detallePerro();
         } else if (tipo2 > 7){
             detalleGato();
@@ -63,9 +66,10 @@ public class RescatadoDetalle extends AppCompatActivity {
     }
 
     private void detalleGato() {
-        storageReference =
+        StorageReference storageReference1 =
                 FirebaseStorage.getInstance().getReference().child("Gatos").child(idRescatado + ".jpg");
-        Glide.with(this).load(storageReference).into(imageRescatado);
+        Glide.with(this).load(storageReference1).into(imageRescatado);
+        Log.d("infoApp", "estoy en detalle gato:");
 
         TextView nombreText = findViewById(R.id.nombreDetalleAdmin);
         TextView pesoText = findViewById(R.id.pesoDetalleAdmin);
@@ -84,6 +88,7 @@ public class RescatadoDetalle extends AppCompatActivity {
         storageReference =
                 FirebaseStorage.getInstance().getReference().child("Perros").child(idRescatado + ".jpg");
         Glide.with(this).load(storageReference).into(imageRescatado);
+
 
         TextView nombreText = findViewById(R.id.nombreDetalleAdmin);
         TextView pesoText = findViewById(R.id.pesoDetalleAdmin);
@@ -116,7 +121,7 @@ public class RescatadoDetalle extends AppCompatActivity {
     }
 
     public void eliminarRegistro (MenuItem item){
-        if (tipo1 < 7){
+        if (tipo1 > 3){
             eliminarPerro();
         } else if (tipo2 > 7){
             eliminarGato();
@@ -176,5 +181,26 @@ public class RescatadoDetalle extends AppCompatActivity {
         intent.putExtra("tiporescatado", tipoRescatado);//Perro o Gato
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        if(tipoRescatado.equals("Perro")){
+            Intent in = new Intent(RescatadoDetalle.this, AdminPerrosGatos.class);
+            in.putExtra("admin", 10);
+            in.putExtra("perros", 8);
+            startActivity(in);
+            finish();
+        } else  if (tipoRescatado.equals("Gato")){
+            Intent in = new Intent(RescatadoDetalle.this, AdminPerrosGatos.class);
+            in.putExtra("admin", 10);
+            in.putExtra("gatos", 4);
+            startActivity(in);
+            finish();
+        }
+
+    }
+
 
 }

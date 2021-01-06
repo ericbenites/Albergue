@@ -31,14 +31,14 @@ public class AdminPerrosGatos extends AppCompatActivity {
     private ListaGatosAdapter listaGatosAdapter;
     DatabaseReference databaseReference;
     private int valor22, valor11;
-
+    private int rescatado1, rescatado2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_perros);
 
-        int rescatado1 = getIntent().getIntExtra("perros", 0);//8
-        int rescatado2 = getIntent().getIntExtra("gatos", 0);//4
+        rescatado1 = getIntent().getIntExtra("perros", 0);//8
+        rescatado2 = getIntent().getIntExtra("gatos", 0);//4
         valor22 = getIntent().getIntExtra("usuario", 0);//20
         valor11 = getIntent().getIntExtra("admin", 0);//10
 
@@ -78,6 +78,7 @@ public class AdminPerrosGatos extends AppCompatActivity {
 
                 listaGatosAdapter = new ListaGatosAdapter(listaPerrosGatos, AdminPerrosGatos.this);
                 perroRecycler.setAdapter(listaGatosAdapter);
+                rescatado2 = 0;
             }
 
             @Override
@@ -107,6 +108,7 @@ public class AdminPerrosGatos extends AppCompatActivity {
 
                 listaPerrosAdapter = new ListaPerrosAdapter(listaPerrosGatos, AdminPerrosGatos.this);
                 perroRecycler.setAdapter(listaPerrosAdapter);
+                rescatado1 = 0;
             }
 
             @Override

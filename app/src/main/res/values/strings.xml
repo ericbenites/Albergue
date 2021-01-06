@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Albergue</string>
-    <string-array name="rescatado">
-        <item>Perro</item>
+    <string-array name="rescatado" >
+        <item >Perro</item>
         <item>Gato</item>
     </string-array>
     <string name="map_key" translatable="false">AIzaSyD5RZ0zboS4Q36iyJApCg3ihr49n99r9xc</string>
